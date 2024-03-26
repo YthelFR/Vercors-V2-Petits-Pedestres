@@ -1,4 +1,4 @@
-<?php
+<!-- 
 session_start();
 require './../src/config.php';
 require './../src/class/User.php';
@@ -47,4 +47,4 @@ $user = unserialize($_SESSION['user']);
             ?>
         </div>
     </div>
-</body>
+</body> -->

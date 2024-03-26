@@ -1,5 +1,5 @@
 <div class="header">
-    <img src="./assets/images/Logo.png" alt="" class="logo">
+    <img src="./../../public/assets/medias/Logo.png" alt="" class="logo">
     <div class="titreHeader">
         <h1>Music Vercors Festival</h1>
     </div>
