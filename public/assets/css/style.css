@@ -1,0 +1,279 @@
+/* ------ BODY ------ */
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(-45deg, #c9769a, #aa74a5, #8673a7);
+  background-size: cover;
+}
+
+h1,
+h2 {
+  font-family: "Montserrat", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+#main {
+  display: flex;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ------ HEADER ------ */
+
+.logo {
+  width: 20%;
+  margin-top: 2%;
+}
+
+.header {
+  height: 100px;
+  background-color: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+}
+
+.bouton_header {
+  background-color: #261945;
+  border-radius: 15px;
+  padding: 10px;
+  color: white;
+  margin: 0 20px;
+}
+
+.bouton_header:hover {
+  background-color: #4765a7;
+  transition: background-color ease 1s;
+  box-shadow: 1px 1px 5px white;
+  transition: box-shadow ease 1s;
+}
+
+.header>a:hover {
+  box-shadow: 0 1px 3px 0 black;
+  transition: box-shadow ease 0.5s;
+}
+
+h1 {
+  justify-content: center;
+  animation: h1Color 15s ease-out infinite;
+  background: linear-gradient(-45deg, #f7889e, #ffa384, #ffcb6d, #f9f871);
+  background-size: 400% 400%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes h1Color {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ------ NAVIGATION ------ */
+
+.navigation {
+  width: 150px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  padding: 0px 30px 0px 20px;
+  color: white;
+  border-radius: 0px 15px 0px 0px;
+  margin-top: 2%;
+}
+
+.navigation>a {
+  color: white;
+  margin: 5px 0;
+  font-weight: bold;
+}
+
+.navigation>a:hover {
+  color: #a4e47f;
+  left: 15px;
+  transition: color ease 1s;
+  margin: 5px 0;
+  font-weight: bold;
+  text-shadow: 2px 2px 5px lightgray;
+  transition: text-shadow ease 1s;
+}
+
+/* ------ FORM ------ */
+
+form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+fieldset {
+  background-color: rgb(201, 198, 198);
+  opacity: 75%;
+  width: 50%;
+  margin: 5% 15%;
+  padding: 10px 30px;
+  border-radius: 15px;
+  border: gray solid 2px;
+}
+
+.fieldsetConnexion {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+}
+
+.fieldsetInscription {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+}
+
+legend {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+#reservation {
+  opacity: 75%;
+  transition: all ease-in-out 250ms;
+}
+
+#options,
+#coordonnees {
+  opacity: 0%;
+  transition: all ease-in-out 250ms;
+}
+
+.textTarifReduit {
+  font-size: 10px;
+  padding: 0px 20px;
+}
+
+
+label {
+  margin: 8px 0 8px 0;
+  padding: 8px 0 8px 0;
+}
+
+input {
+  margin: 5px 0px;
+}
+
+.width {
+  width: 100%;
+}
+
+input:hover {
+  background-color: rgb(244, 244, 244);
+  transition: bakckground-color ease 1s;
+}
+
+#coordonnees>input {
+  width: -webkit-fill-available;
+}
+
+#coordonnees>label {
+  font-weight: bold;
+}
+
+.bouton {
+  width: 40%;
+  text-align: center;
+  margin: 15px 0;
+  padding: 12px 7px;
+  background-color: #261945;
+  border: 0;
+  border-radius: 15px;
+  color: white;
+}
+
+.bouton:hover {
+  background-color: #4765a7;
+  transition: background-color ease 1s;
+  box-shadow: 1px 1px 5px rgb(67, 67, 67);
+  transition: box-shadow ease 1s;
+  cursor: pointer;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#reservation>.bouton {
+  align-self: flex-end;
+  width: 40%;
+  text-align: center;
+}
+
+.affichage_reservation {
+  width: 70%;
+  margin: 0 15%;
+}
+
+/* ------ PASS ------ */
+
+.blocPassInvisible {
+  display: none;
+  opacity: 0;
+  transition: opacity ease 1s;
+}
+
+.blocPassVisible {
+  display: inline;
+  flex-direction: column;
+  opacity: 1;
+  transition: opacity ease 1s;
+}
+
+.colonnes {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+}
+
+/* ------ ESPACE ADMIN ------ */
+
+.listUsers {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 0 5%;
+}
+
+.utilisateur {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  margin: 5% 2%;
+  padding: 5%;
+  border-radius: 15px;
+  box-shadow: 2px 2px 10px lightgray;
+}
+
+.boutonDelete {
+  display: inline;
+  width: 30%;
+  align-self: end;
+  justify-content: center;
+  margin-top: 1%;
+}
