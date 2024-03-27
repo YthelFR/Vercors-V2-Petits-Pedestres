@@ -147,7 +147,7 @@ class User
 
     private function id_utilisateur()
     {
-        $Database = new Database();
+        $Database = new Database;
         $utilisateurs = $Database->ToutLesUtilisateurs();
         $Ids = [];
         foreach ($utilisateurs as $utilisateur) {

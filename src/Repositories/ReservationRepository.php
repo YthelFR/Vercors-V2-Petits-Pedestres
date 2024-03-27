@@ -2,6 +2,8 @@
 
 namespace src\Repositories;
 
+use src\Models\Reservation;
+
 class ReservationRepository
 {
     private $_DB;

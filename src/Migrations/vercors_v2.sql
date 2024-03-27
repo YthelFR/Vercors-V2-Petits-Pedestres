@@ -14,6 +14,7 @@ CREATE TABLE User(
         ADRESSE_USER   Varchar (255) NOT NULL ,
         IS_ADMIN       Bool NOT NULL ,
         DATE_RGPD      Datetime NOT NULL ,
+        PASSWORD_USER  Varchar (50) NOT NULL ,
         EMAIL_USER     Varchar (255) NOT NULL ,
         TELEPHONE_USER Varchar (15) NOT NULL
 	,CONSTRAINT User_AK UNIQUE (EMAIL_USER,TELEPHONE_USER)
@@ -30,6 +31,7 @@ CREATE TABLE Reservation(
         ENFANT_RESERVATION        Bool NOT NULL ,
         NOMBRECASQUES_RESERVATION Int NOT NULL ,
         NOMBRELUGES_RESERVATION   Int NOT NULL ,
+        NOMBRE_RESERVATION        Int NOT NULL ,
         ID_USER                   Int NOT NULL
 	,CONSTRAINT Reservation_PK PRIMARY KEY (ID_RESERVATION)
 
@@ -57,7 +59,6 @@ CREATE TABLE Pass(
         ID_PASS     Int  Auto_increment  NOT NULL ,
         CHOIX_PASS  Varchar (50) NOT NULL ,
         TARIF_PASS  Int NOT NULL ,
-        DATE_PASS   Date NOT NULL ,
         REDUIT_PASS Bool NOT NULL
 	,CONSTRAINT Pass_PK PRIMARY KEY (ID_PASS)
 )ENGINE=InnoDB;
@@ -69,7 +70,8 @@ CREATE TABLE Pass(
 
 CREATE TABLE Choisi(
         ID_PASS        Int NOT NULL ,
-        ID_RESERVATION Int NOT NULL
+        ID_RESERVATION Int NOT NULL ,
+        DATE_PASS      Date NOT NULL
 	,CONSTRAINT Choisi_PK PRIMARY KEY (ID_PASS,ID_RESERVATION)
 
 	,CONSTRAINT Choisi_Pass_FK FOREIGN KEY (ID_PASS) REFERENCES Pass(ID_PASS)

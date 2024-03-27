@@ -2,6 +2,8 @@
 
 namespace src\Models;
 
+use src\Repositories\ReservationRepository;
+
 class Reservation
 {
     private $_Id;
@@ -141,7 +143,7 @@ class Reservation
 
     public function Id_Reservation()
     {
-        $Database_reservation = new Database_reservation();
+        $Database_reservation = new ReservationRepository();
         $Reservations = $Database_reservation->Toute_Les_Reservations();
         $Ids = [];
         foreach ($Reservations as $Reservations) {

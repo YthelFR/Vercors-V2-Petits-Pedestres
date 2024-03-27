@@ -1,9 +1,9 @@
 <?php
+
+use src\Repositories\ReservationRepository;
+
 session_start();
-require './src/config.php';
-require './src/class/User.php';
-require './src/class/Database_reservation.php';
-require './src/class/Reservation.php';
+require './../config.php';
 
 $Messages_Erreurs = null;
 if (isset($_GET['erreur'])) {
@@ -37,7 +37,7 @@ $email = $user->getMail();
         <div class="affichage_reservation">
             <h2>Récapitulatif de votre commande</h2>
             <?php
-            $database_reservation = new Database_reservation();
+            $database_reservation = new ReservationRepository;
             $database_reservation_utilisateur = $database_reservation->Toute_Les_Reservations();
             if (!empty($database_reservation_utilisateur)) {
                 foreach ($database_reservation_utilisateur as $user_resa) {
