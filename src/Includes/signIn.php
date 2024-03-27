@@ -27,7 +27,7 @@ if (isset($_GET['erreur'])) {
     <div id="main">
     <?php include_once "./navigation.php"; ?>
 
-        <form action="/src/traitement_User.php" method="post" onsubmit="return Validation()">
+        <form action="/src/Traitements/traitement_User.php" method="post" onsubmit="return Validation()">
             <fieldset class="fieldsetInscription">
                 <h2>Formulaire d'inscription</h1>
 
