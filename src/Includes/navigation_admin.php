@@ -1,4 +1,4 @@
-<!-- 
+<?php
 session_start();
 require './../src/config.php';
 require './../src/class/User.php';
@@ -20,10 +20,14 @@ $user = unserialize($_SESSION['user']);
 </head>
 
 <body>
-    <?php readfile('./header.php'); ?>
+<?php
+
+use src\Models\Database;
+
+ include_once __DIR__ . "/../src/Includes/header.php"; ?>
 
     <div id="main">
-        <?php readfile('./navigation.php'); ?>
+    <?php include_once __DIR__ . "/../src/Includes/navigation.php"; ?>
         <div class="listUsers">
             <h2>Liste des utilisateurs</h2><br>
             <?php
@@ -47,4 +51,4 @@ $user = unserialize($_SESSION['user']);
             ?>
         </div>
     </div>
-</body> -->
+</body>

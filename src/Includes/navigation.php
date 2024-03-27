@@ -1,5 +1,5 @@
 <?php
 ?>
 <div class="navigation">
-    <a href="./index.php">Réserver</a>
+    <a href="./../../public/index.php">Réserver</a>
 </div>
