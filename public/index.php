@@ -1,9 +1,8 @@
 <?php
-session_start();
-require './../config.php';
-// require 'src/class/User.php';
-// require 'src/class/Database_reservation.php';
-// require 'src/class/Reservation.php';
+require __DIR__ . "/../src/init.php";
+require './../src/Models/User.php';
+require './../src/Models/Database.php';
+require './../src/Repositories/ReservationRepository.php';
 $Messages_Erreurs = null;
 
 if (isset($_GET['erreur'])) {
