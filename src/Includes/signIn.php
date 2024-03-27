@@ -18,14 +18,14 @@ if (isset($_GET['erreur'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription Newsletter</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <script type="module" src="./assets/js/script.js" defer></script>
+    <link rel="stylesheet" href="/../public/assets/css/style.css">
+    <script type="module" src="/../public/assets/js/script.js" defer></script>
 </head>
 
 <body>
-<?php include_once __DIR__ . "/../src/Includes/header.php"; ?>
+<?php include_once "./header.php"; ?>
     <div id="main">
-    <?php include_once __DIR__ . "/../src/Includes/navigation.php"; ?>
+    <?php include_once "./navigation.php"; ?>
 
         <form action="/src/traitement_User.php" method="post" onsubmit="return Validation()">
             <fieldset class="fieldsetInscription">
