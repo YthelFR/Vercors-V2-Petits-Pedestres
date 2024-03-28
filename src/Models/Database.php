@@ -5,7 +5,7 @@ namespace src\Models;
 use PDO;
 use PDOException;
 
-final class Database
+class Database
 {
     private $DB;
     private $config;
