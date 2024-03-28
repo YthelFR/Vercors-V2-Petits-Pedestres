@@ -1,11 +1,11 @@
 <?php
 
-use src\Models\Database;
 use src\Models\User;
+use src\Repositories\UserRepository;
 
-require 'config.php';
-require 'class/User.php';
-require 'class/Database.php';
+require '/../config.php';
+require './erreurs.php';
+
 
 if (!empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['mail']) && !empty($_POST['password']) && !empty($_POST['password2']) && isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['mail']) && isset($_POST['password']) && isset($_POST['password2'])) {
     $Nom = htmlentities($_POST['nom']);
@@ -30,10 +30,10 @@ if (!empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['mail']) 
         exit;
     }
     // action finale
-    $Data_base = new Database();
-    $User = new User($Nom, $Prenom, $Mail, $password);
+    $repository = new UserRepository();
+    $User = new User($NOM_USER, $PRENOM_USER, $ADRESSE_USER, $IS_ADMIN, $DATE_RGPD, $PASSWORD_USER, $EMAIL_USER, $TELEPHONE_USER);
 
-    if (($Data_base->saveUtilisateur($User)) == true) {
+    if (($repository->registerUser($User)) == true) {
         header('location: /../connexion.php');
         die;
     } else {

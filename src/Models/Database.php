@@ -20,6 +20,11 @@ final class Database
         $this->connexionDB();
     }
 
+    public function getDB()
+    {
+        return $this->DB;
+    }
+
     private function connexionDB(): void
     {
         try {
@@ -28,11 +33,6 @@ final class Database
         } catch (PDOException $error) {
             echo "Quelque chose s'est mal passé : " . $error->getMessage();
         }
-    }
-
-    public function getDB()
-    {
-        return $this->DB;
     }
 
     public function initializeDB(): string
