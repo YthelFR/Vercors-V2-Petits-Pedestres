@@ -1,4 +1,4 @@
-    <form action="./src/traitement_Reservation.php" id="inscription" method="post">
+    <form action="/src/Traitements/traitement_Reservation.php" id="inscription" method="post">
         <fieldset id="reservation">
             <legend>Réservation</legend>
             <?php if ($Messages_Erreurs === 2) { ?>
