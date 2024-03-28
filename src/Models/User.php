@@ -4,14 +4,17 @@ namespace src\Models;
 
 class User
 {
-    private $_id;
-    private $_Nom;
-    private $_Prenom;
-    private $_Mail;
-    private $_password;
-    // #
+    private $ID_USER;
+    private $NOM_USER;
+    private $PRENOM_USER;
+    private $ADRESSE_USER;
+    private $IS_ADMIN;
+    private $DATE_RGPD;
+    private $PASSWORD_USER;
+    private $EMAIL_USER;
+    private $TELEPHONE_USER;
     private $_logged;
-    private $_role;
+
     /**
      * [__construct description]
      *
@@ -27,65 +30,83 @@ class User
      * @return  [type]             [return description]
      */
 
-    public function __construct(string $Nom, string $Prenom, string $Mail, string $password, int|string $id = "à créer", bool $logged = false, string $role = "user")
+    public function __construct(array $datas)
     {
-        $this->setId($id);
-        $this->setNom($Nom);
-        $this->setPrenom($Prenom);
-        $this->setMail($Mail);
-        $this->setpassword($password);
-        $this->setLogged($logged);
-        $this->setRole($role);
-    }
-
-    public function getId(): int
-    {
-        return $this->_id;
-    }
-    public function setId(int|string $id): void
-    {
-        if (is_string($id) && $id == "à créer") {
-            $this->_id = $this->id_utilisateur();
-        } else {
-            $this->_id = $id;
+        foreach ($datas as $key => $value) {
+            $this->$key = $value;
         }
     }
 
-    public function getNom(): string
+    /**
+     * Get the value of ID_USER
+     */
+    public function getIDUSER()
     {
-        return $this->_Nom;
-    }
-    public function setNom(string $Nom)
-    {
-        $this->_Nom = $Nom;
-    }
-
-    public function getPrenom(): string
-    {
-        return $this->_Prenom;
-    }
-    public function setPrenom(string $Prenom)
-    {
-        $this->_Prenom = $Prenom;
+        return $this->ID_USER;
     }
 
-    public function getpassword(): string
+    /**
+     * Set the value of ID_USER
+     */
+    public function setIDUSER($ID_USER): self
     {
-        return $this->_password;
-    }
-    public function setpassword(string $password)
-    {
-        $this->_password = $password;
+        $this->ID_USER = $ID_USER;
+
+        return $this;
     }
 
-    public function getMail(): string
+    /**
+     * Get the value of NOM_USER
+     */
+    public function getNOMUSER()
     {
-        return $this->_Mail;
+        return $this->NOM_USER;
     }
 
-    public function setMail(string $Mail)
+    /**
+     * Set the value of NOM_USER
+     */
+    public function setNOMUSER($NOM_USER): self
     {
-        $this->_Mail = $Mail;
+        $this->NOM_USER = $NOM_USER;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of PRENOM_USER
+     */
+    public function getPRENOMUSER()
+    {
+        return $this->PRENOM_USER;
+    }
+
+    /**
+     * Set the value of PRENOM_USER
+     */
+    public function setPRENOMUSER($PRENOM_USER): self
+    {
+        $this->PRENOM_USER = $PRENOM_USER;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of ADRESSE_USER
+     */
+    public function getADRESSEUSER()
+    {
+        return $this->ADRESSE_USER;
+    }
+
+    /**
+     * Set the value of ADRESSE_USER
+     */
+    public function setADRESSEUSER($ADRESSE_USER): self
+    {
+        $this->ADRESSE_USER = $ADRESSE_USER;
+
+        return $this;
     }
 
     #
@@ -108,60 +129,94 @@ class User
         $this->setLogged(false);
     }
 
-    public function getRole(): string
+    public function getISADMIN(): bool
     {
-        return $this->_role;
+        return $this->IS_ADMIN;
     }
 
-    public function setRole(string $role): void
+    public function setISADMIN(bool $IS_ADMIN): void
     {
-        $this->_role = $role;
+        $this->IS_ADMIN = $IS_ADMIN;
     }
 
     public function admin()
     {
-        if ($this->getRole() == "admin") {
+        if ($this->getISADMIN() == "admin") {
             return true;
         } else {
             return false;
         }
     }
 
-    public function getObjectToArray(): array
+    /**
+     * Get the value of DATE_RGPD
+     */
+    public function getDATERGPD()
     {
-        return [
-            'id' => $this->getId(),
-            'Nom' => $this->getNom(),
-            'Prenom' => $this->getPrenom(),
-            'Mail' => $this->getMail(),
-            'password' => $this->getpassword(),
-            'logged' => $this->getLogged(),
-            'role' => $this->getRole()
-        ];
+        return $this->DATE_RGPD;
     }
 
-    public function passwordverify(string $password): bool
+    /**
+     * Set the value of DATE_RGPD
+     */
+    public function setDATERGPD($DATE_RGPD): self
     {
-        return password_verify($password, $this->getpassword());
+        $this->DATE_RGPD = $DATE_RGPD;
+
+        return $this;
     }
 
-    private function id_utilisateur()
+    /**
+     * Get the value of PASSWORD_USER
+     */
+    public function getPASSWORDUSER()
     {
-        $Database = new Database;
-        $utilisateurs = $Database->ToutLesUtilisateurs();
-        $Ids = [];
-        foreach ($utilisateurs as $utilisateur) {
-            $Ids[] = $utilisateur->getId();
-        }
-        $i = 1;
-        $unique = false;
-        while ($unique === false) {
-            if (in_array($i, $Ids)) {
-                $i++;
-            } else {
-                $unique = true;
-            }
-        }
-        return $i;
+        return $this->PASSWORD_USER;
+    }
+
+    /**
+     * Set the value of PASSWORD_USER
+     */
+    public function setPASSWORDUSER($PASSWORD_USER): self
+    {
+        $this->PASSWORD_USER = $PASSWORD_USER;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of EMAIL_USER
+     */
+    public function getEMAILUSER()
+    {
+        return $this->EMAIL_USER;
+    }
+
+    /**
+     * Set the value of EMAIL_USER
+     */
+    public function setEMAILUSER($EMAIL_USER): self
+    {
+        $this->EMAIL_USER = $EMAIL_USER;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of TELEPHONE_USER
+     */
+    public function getTELEPHONEUSER()
+    {
+        return $this->TELEPHONE_USER;
+    }
+
+    /**
+     * Set the value of TELEPHONE_USER
+     */
+    public function setTELEPHONEUSER($TELEPHONE_USER): self
+    {
+        $this->TELEPHONE_USER = $TELEPHONE_USER;
+
+        return $this;
     }
 }

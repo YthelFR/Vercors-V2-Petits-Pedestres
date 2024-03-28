@@ -13,14 +13,14 @@ if (isset($_GET['erreur'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="/../public/assets/css/style.css">
     <title>Connexion</title>
 </head>
 
 <body>
-    <?php readfile('./assets/header.php'); ?>
+    <?php include_once "./header.php"; ?>
     <div id="main">
-        <?php readfile('./assets/navigation.php'); ?>
+        <?php include_once "./navigation.php"; ?>
         <form action="src/authentication.php" method="post" onsubmit="return Validation()">
             <fieldset class="fieldsetConnexion">
                 <h2>Connexion</h1>

@@ -1,4 +1,4 @@
-<!-- 
+<?php
 session_start();
 require './../src/config.php';
 require './../src/class/User.php';
@@ -20,16 +20,20 @@ $user = unserialize($_SESSION['user']);
 </head>
 
 <body>
-    <?php readfile('./header.php'); ?>
+    <?php
+
+    use src\Repositories\UserRepository;
+
+    include_once __DIR__ . "/../src/Includes/header.php"; ?>
 
     <div id="main">
-        <?php readfile('./navigation.php'); ?>
+        <?php include_once __DIR__ . "/../src/Includes/navigation.php"; ?>
         <div class="listUsers">
             <h2>Liste des utilisateurs</h2><br>
             <?php
 
-            $database_utilisateurs = new Database();
-            $utilisateurs = $database_utilisateurs->ToutLesUtilisateurs();
+            $database_utilisateurs = new UserRepository();
+            $utilisateurs = $database_utilisateurs->getAllUsers();
 
             if (!empty($utilisateurs)) {
                 foreach ($utilisateurs as $utilisateur) { ?>
@@ -47,4 +51,4 @@ $user = unserialize($_SESSION['user']);
             ?>
         </div>
     </div>
-</body> -->
+</body>

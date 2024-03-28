@@ -25,15 +25,15 @@ $email = $user->getMail();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Tableau de bord</title>
 </head>
 
 <body>
-    <?php include './assets/header_user.php'; ?>
+    <?php include_once __DIR__ . "/../src/Includes/header.php"; ?>
 
     <div id="main">
-        <?php include './assets/navigation_user.php'; ?>
+        <?php include_once __DIR__ . "/../src/Includes/navigation_user.php"; ?>
         <div class="affichage_reservation">
             <h2>Récapitulatif de votre commande</h2>
             <?php

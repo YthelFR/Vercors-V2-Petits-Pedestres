@@ -18,16 +18,16 @@ if (isset($_GET['erreur'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription Newsletter</title>
-    <link rel="stylesheet" href="assets/style.css">
-    <script src="assets/script.js" defer></script>
+    <link rel="stylesheet" href="/../public/assets/css/style.css">
+    <script type="module" src="/../public/assets/js/script.js" defer></script>
 </head>
 
 <body>
-    <?php include './assets/header.php'; ?>
+<?php include_once "./header.php"; ?>
     <div id="main">
-        <?php include './assets/navigation.php'; ?>
+    <?php include_once "./navigation.php"; ?>
 
-        <form action="/src/traitement_User.php" method="post" onsubmit="return Validation()">
+        <form action="/src/Traitements/traitement_User.php" method="post" onsubmit="return Validation()">
             <fieldset class="fieldsetInscription">
                 <h2>Formulaire d'inscription</h1>
 
