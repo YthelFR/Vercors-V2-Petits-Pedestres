@@ -18,6 +18,18 @@ final class Database
         require_once $this->config;
 
         $this->connexionDB();
+
+        $host = 'localhost';
+        $dbname = 'festival_reservation';
+        $user = 'festival_reservation';
+        $password = 'Password123';
+
+        try {
+            $this->pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
     }
 
     public function getDB()

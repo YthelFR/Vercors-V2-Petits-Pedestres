@@ -3,7 +3,7 @@
 use src\Repositories\ReservationRepository;
 
 session_start();
-require './../config.php';
+require './../../config.php';
 
 $Messages_Erreurs = null;
 if (isset($_GET['erreur'])) {
@@ -16,7 +16,7 @@ if (!isset($_SESSION['connecté']) && empty($_SESSION['user'])) {
     die;
 }
 $user = unserialize($_SESSION['user']);
-$email = $user->getMail();
+$email = $user->getEMAILUSER();
 ?>
 
 <!DOCTYPE html>

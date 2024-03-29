@@ -1,5 +1,8 @@
 <?php
 
+namespace src\Traitements;
+
+
 use src\Models\Reservation;
 use src\Repositories\ReservationRepository;
 
