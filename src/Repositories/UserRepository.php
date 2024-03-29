@@ -73,15 +73,16 @@ class UserRepository
 
     public function registerUser(User $user)
     {
-        $password = hash("whirlpool", $user->getPASSWORDUSER());
+        $password = $user->getPASSWORDUSER();
 
         try {
-            $stmt = $this->pdo->prepare("INSERT INTO asy_user VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt = $this->pdo->prepare("INSERT INTO asy_user (NOM_USER, PRENOM_USER, ADRESSE_USER, IS_ADMIN, DATE_RGPD, PASSWORD_USER, EMAIL_USER, TELEPHONE_USER) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             $stmt->execute([$user->getNOMUSER(), $user->getPRENOMUSER(), $user->getADRESSEUSER(), '0', $user->getDATERGPD(), $password, $user->getEMAILUSER(), $user->getTELEPHONEUSER()]);
 
-            return  "Inserted";
+            return true;
         } catch (\PDOException $e) {
-            return "Error";
+            echo "Erreur d'insertion : " . $e->getMessage();
+            return false;
         }
     }
 
