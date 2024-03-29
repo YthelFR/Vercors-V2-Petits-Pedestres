@@ -5,10 +5,11 @@ namespace src\Models;
 use PDO;
 use PDOException;
 
-final class Database
+class Database
 {
     private $DB;
     private $config;
+    private $pdo;
 
 
     public function __construct()
@@ -19,6 +20,11 @@ final class Database
         $this->connexionDB();
     }
 
+    public function getDB()
+    {
+        return $this->DB;
+    }
+
     private function connexionDB(): void
     {
         try {
@@ -27,11 +33,6 @@ final class Database
         } catch (PDOException $error) {
             echo "Quelque chose s'est mal passé : " . $error->getMessage();
         }
-    }
-
-    public function getDB()
-    {
-        return $this->DB;
     }
 
     public function initializeDB(): string
@@ -97,71 +98,8 @@ final class Database
             return false;
         }
     }
-
-    public function ToutLesUtilisateurs(): array
+    public function getPDO()
     {
-        $fichier = fopen($this->DB, "r");
-        $utilisateur = [];
-
-        while (($ligne = fgetcsv($fichier, 1000, ",")) !== false) {
-            $utilisateur[] = new User($ligne[1], $ligne[2], $ligne[3], $ligne[4], $ligne[0], $ligne[5]);
-        }
-        fclose($fichier);
-        return $utilisateur;
-    }
-
-    public function findUserByEmail(string $Mail): User|bool
-    {
-        $fichier = fopen($this->DB, "r");
-        while (($user = fgetcsv($fichier, 1000, ",")) !== false) {
-            if ($user[3] === $Mail) {
-                $user = new User($user[1], $user[2], $user[3], $user[4], $user[0], $user[5]);
-                break;
-            } else {
-                $user = false;
-            }
-        }
-        fclose($fichier);
-        return $user;
-    }
-
-    public function findUserById(int $id): User|bool
-    {
-        $fichier = fopen($this->DB, "r");
-        while (($user = fgetcsv($fichier, 500, ",")) !== false) {
-            if ($user[0] === $id) {
-                $user = new User($user[1], $user[2], $user[3], $user[4], $user[0], $user[5]);
-                break;
-            } else {
-                $user = false;
-            }
-        }
-        fclose($fichier);
-        return $user;
-    }
-
-    public function saveUtilisateur(User $User): bool
-    {
-        $fichier = fopen($this->DB, "ab");
-        $retour = fputcsv($fichier, $User->getObjectToArray());
-        fclose($fichier);
-        return $retour;
-    }
-
-    public function supprimerUtilisateur(int $IdUser): bool
-    {
-        if ($this->findUserById($IdUser)) {
-            $utilisateurs = $this->ToutLesUtilisateurs();
-            $fichier = fopen($this->DB, 'w');
-            foreach ($utilisateurs as $utilisateur) {
-                if ($utilisateur->getId() !== $IdUser) {
-                    $retour = fputcsv($fichier, $utilisateur->getObjectToArray());
-                }
-            }
-            fclose($fichier);
-            return true;
-        } else {
-            return false;
-        }
+        return $this->pdo;
     }
 }

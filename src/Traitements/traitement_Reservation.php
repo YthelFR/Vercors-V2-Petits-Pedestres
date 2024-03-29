@@ -4,6 +4,7 @@ use src\Models\Reservation;
 use src\Repositories\ReservationRepository;
 
 require './../../config.php';
+require './erreurs.php';
 
 if (!empty($_POST['nom']) && isset($_POST['nom']) && !empty($_POST['prenom']) && isset($_POST['prenom']) && !empty($_POST['email']) && isset($_POST['email']) && !empty($_POST['telephone']) && isset($_POST['telephone']) && !empty($_POST['adressePostale']) && isset($_POST['adressePostale'])) {
     $nom = htmlspecialchars(strip_tags($_POST['nom']));
