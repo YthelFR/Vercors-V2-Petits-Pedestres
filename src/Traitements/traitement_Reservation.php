@@ -16,9 +16,8 @@ if (!empty($_POST['nom']) && isset($_POST['nom']) && !empty($_POST['prenom']) &&
     $telephone = htmlspecialchars(strip_tags($_POST['telephone']));
 
 
-    if (is_numeric($telephone)) {
-        $telephone = $telephone;
-    } else {
+    if (!is_numeric($telephone)) {
+    
         header('location : /../index.php?erreur=' . ERREUR_TELEPHONE);
     }
 
