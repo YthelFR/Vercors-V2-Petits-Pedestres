@@ -24,7 +24,7 @@ if (!empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['mail']) 
 
     if ($_POST['password'] === $_POST['password2']) {
         if (strlen($_POST['password']) >= 8) {
-            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $password = hash('whirlpool', $password, PASSWORD_DEFAULT);
         } else {
             header('location: /../public/index.php?erreur=' . ERREUR_PASSWORD_LENGTH);
             exit;

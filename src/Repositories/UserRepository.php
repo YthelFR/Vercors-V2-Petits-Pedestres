@@ -73,7 +73,7 @@ class UserRepository
 
     public function registerUser(User $user)
     {
-        $password = $user->getPASSWORDUSER();
+        $password = $user->hashPassword($user->getPASSWORDUSER());
 
         try {
             $stmt = $this->pdo->prepare("INSERT INTO asy_user (NOM_USER, PRENOM_USER, ADRESSE_USER, IS_ADMIN, DATE_RGPD, PASSWORD_USER, EMAIL_USER, TELEPHONE_USER) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
@@ -112,7 +112,8 @@ class UserRepository
                 ADRESSE_USER = :ADRESSE_USER,
                 IS_ADMIN = :IS_ADMIN,
                 EMAIL_USER = :EMAIL_USER,
-                TELEPHONE_USER = :TELEPHONE_USER
+                TELEPHONE_USER = :TELEPHONE_USER,
+                PASSWORD_USER = :PASSWORD_USER
             WHERE ID_USER = :ID_USER";
 
         $statement = $this->DB->prepare($sql);
@@ -125,6 +126,7 @@ class UserRepository
             ':IS_ADMIN' => $user->getISADMIN(),
             ':EMAIL_USER' => $user->getEMAILUSER(),
             ':TELEPHONE_USER' => $user->getTELEPHONEUSER(),
+            ':PASSWORD_USER' => $user->hashPassword($user->getPASSWORDUSER()),
         ]);
 
         return $retour;
