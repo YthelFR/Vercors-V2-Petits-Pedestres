@@ -1,4 +1,3 @@
-php:
 
 <div class="header">
     <img src="./../../public/assets/medias/Logo.png" alt="" class="logo">

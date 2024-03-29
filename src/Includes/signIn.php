@@ -23,9 +23,9 @@ if (isset($_GET['erreur'])) {
 </head>
 
 <body>
-<?php include_once "./header.php"; ?>
+    <?php include_once "./header.php"; ?>
     <div id="main">
-    <?php include_once "./navigation.php"; ?>
+        <?php include_once "./navigation.php"; ?>
 
         <form action="/src/Traitements/traitement_User.php" method="post" onsubmit="return Validation()">
             <fieldset class="fieldsetInscription">
@@ -59,6 +59,13 @@ if (isset($_GET['erreur'])) {
                     <?php if ($Messages_Erreurs === 4) { ?>
                         <p class='message error'>Le mot de passe doit avoir au moins 8 caractères.</p>
                     <?php } ?>
+                    <label for="telephone">Téléphone :</label>
+                    <input type="text" name="telephone" id="telephone" required><br>
+                    <?php if ($Messages_Erreurs === 8) { ?>
+                        <div class="message echec">Veuillez remplir un numéro de téléphone valide.</div>
+                    <?php } ?>
+                    <label for="adressePostale">Adresse Postale :</label>
+                    <input type="text" name="adressePostale" id="adressePostale" required><br>
                     <?php if ($Messages_Erreurs === 2) { ?>
                         <p class='message error'>Tout les champs doivent être remplis.</p>
                     <?php } ?>
