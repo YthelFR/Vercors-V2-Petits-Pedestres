@@ -21,7 +21,7 @@ if (isset($_GET['erreur'])) {
     <?php include_once "./header.php"; ?>
     <div id="main">
         <?php include_once "./navigation.php"; ?>
-        <form action="/../src/authentication.php" method="post" onsubmit="return Validation()">
+        <form action="/../src/Traitements/authentication.php" method="post" onsubmit="return Validation()">
             <fieldset class="fieldsetConnexion">
                 <h2>Connexion</h1>
                     <div><label for="email">Mail :</label>

@@ -26,18 +26,18 @@ if (!empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['mail']) 
         if (strlen($_POST['password']) >= 8) {
             $password = hash('whirlpool', $password, PASSWORD_DEFAULT);
         } else {
-            header('location: /../public/index.php?erreur=' . ERREUR_PASSWORD_LENGTH);
+            header('location: ../Includes/signIn.php?erreur=' . ERREUR_PASSWORD_LENGTH);
             exit;
         }
     } else {
-        header('location: /../public/index.php?erreur=' . PASSWORD_PAS_IDENTIQUE);
+        header('location: ../Includes/signIn.php?erreur=' . PASSWORD_PAS_IDENTIQUE);
         exit;
     }
 
     if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
         $Mail = htmlentities($_POST['mail']);
     } else {
-        header('location: /public/index.php?email=' . ERREUR_EMAIL);
+        header('location: ../Includes/signIn.php?email=' . ERREUR_EMAIL);
         exit;
     }
     // action finale
@@ -45,12 +45,12 @@ if (!empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['mail']) 
     $User = new User(['NOM_USER' => $NOM_USER, 'PRENOM_USER' => $PRENOM_USER, 'ADRESSE_USER' => $ADRESSE_USER, 'IS_ADMIN' => $IS_ADMIN, 'DATE_RGPD' => $DATE_RGPD, 'PASSWORD_USER' => $PASSWORD_USER, 'EMAIL_USER' => $EMAIL_USER, 'TELEPHONE_USER' => $TELEPHONE_USER]);
 
     if (($repository->registerUser($User)) == true) {
-        header('location: /../src/Includes/connexion.php');
+        header('location: ../Includes/connexion.php');
         die;
     } else {
-        header('location: /../public/index.php?message=' . ERREUR_ENREGISTREMENT);
+        header('location: ../Includes/signIn.php?message=' . ERREUR_ENREGISTREMENT);
         die;
     }
 } else {
-    header('location: /../public/index.php?message=' . ERREUR_CHAMP_VIDE);
+    header('location: ../Includes/signIn.php?message=' . ERREUR_CHAMP_VIDE);
 }
