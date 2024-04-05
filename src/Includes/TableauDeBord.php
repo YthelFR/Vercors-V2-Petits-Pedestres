@@ -1,9 +1,10 @@
 <?php
-
+namespace src\Includes;
 use src\Repositories\ReservationRepository;
+require './../autoload.php';
+require './../../config.php';
 
 session_start();
-require './../config.php';
 
 $Messages_Erreurs = null;
 if (isset($_GET['erreur'])) {
@@ -16,7 +17,7 @@ if (!isset($_SESSION['connecté']) && empty($_SESSION['user'])) {
     die;
 }
 $user = unserialize($_SESSION['user']);
-$email = $user->getMail();
+$email = $user->getEMAILUSER();
 ?>
 
 <!DOCTYPE html>
@@ -25,20 +26,21 @@ $email = $user->getMail();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="/../public/assets/css/style.css">
     <title>Tableau de bord</title>
 </head>
 
 <body>
-    <?php include_once __DIR__ . "/../src/Includes/header.php"; ?>
+    <?php include_once __DIR__ . "/header.php"; ?>
 
     <div id="main">
-        <?php include_once __DIR__ . "/../src/Includes/navigation_user.php"; ?>
+        <?php include_once __DIR__ . "/navigation.php"; ?>
         <div class="affichage_reservation">
             <h2>Récapitulatif de votre commande</h2>
             <?php
-            $database_reservation = new ReservationRepository;
-            $database_reservation_utilisateur = $database_reservation->Toute_Les_Reservations();
+            $DB = new \src\Models\Database();
+            $database_reservation = new ReservationRepository($DB);
+            $database_reservation_utilisateur = $database_reservation->getAllReservations();
             if (!empty($database_reservation_utilisateur)) {
                 foreach ($database_reservation_utilisateur as $user_resa) {
                     if ($user_resa->getEmail() == $email) { ?>

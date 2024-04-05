@@ -11,10 +11,11 @@ class UserRepository
 {
     private $DB;
     private $pdo;
-
+    
     public function __construct()
     {
         $database = new Database;
+        
         $this->DB = $database->getDB();
         $this->pdo = $database->getPDO();
 
@@ -30,7 +31,7 @@ class UserRepository
         return $retour;
     }
 
-    public function getUserById($id): object
+    public function getUserById($id):bool
     {
         $sql = "SELECT * FROM asy_user WHERE ID_USER = :ID_USER";
 
@@ -43,15 +44,16 @@ class UserRepository
         return $retour;
     }
 
-    public function getUserByEmail($Mail): object
+    public function getUserByEmail(string $Mail): User|bool
     {
         $sql = "SELECT * FROM asy_user WHERE EMAIL_USER = :EMAIL_USER";
 
         $statement = $this->DB->prepare($sql);
-        $statement->bindParam(':EMAIL_USER', $Mail);
-        $statement->execute();
-
-        $retour = $statement->fetch(PDO::FETCH_OBJ);
+        $statement->execute([
+            ":EMAIL_USER" => $Mail
+        ]);
+        $statement->setFetchMode(PDO::FETCH_CLASS, User::class);
+        $retour = $statement->fetch();
 
         return $retour;
     }
@@ -73,34 +75,37 @@ class UserRepository
 
     public function registerUser(User $user)
     {
-        $password = hash("whirlpool", $user->getPASSWORDUSER());
+        $password = $user->getPASSWORDUSER();
 
         try {
-            $stmt = $this->pdo->prepare("INSERT INTO asy_user VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt = $this->pdo->prepare("INSERT INTO asy_user (NOM_USER, PRENOM_USER, ADRESSE_USER, IS_ADMIN, DATE_RGPD, PASSWORD_USER, EMAIL_USER, TELEPHONE_USER) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             $stmt->execute([$user->getNOMUSER(), $user->getPRENOMUSER(), $user->getADRESSEUSER(), '0', $user->getDATERGPD(), $password, $user->getEMAILUSER(), $user->getTELEPHONEUSER()]);
 
-            return  "Inserted";
-        } catch (\PDOException $e) {
-            return "Error";
+            return true;
+        } catch (PDOException $e) {
+            echo "Erreur d'insertion : " . $e->getMessage();
+            return false;
         }
     }
 
 
-    public function checkUserExist(User $user)
-    {
-        $email = $user->getEMAILUSER();
+public function checkUserExist(User $user)
+{
+    $email = $user->getEMAILUSER();
 
-        try {
-            $stmt = $this->pdo->query("SELECT * FROM asy_user WHERE EMAIL_USER = '$email' ");
-        } catch (\PDOException $e) {
-            return $e;
-        }
-        while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-            $user = new User($row);
-        }
-
-        return $stmt->rowCount() == 1;
+    try {
+        $stmt = $this->pdo->query("SELECT * FROM asy_user WHERE EMAIL_USER = '$email' ");
+    } catch (PDOException $e) {
+        return $e;
     }
+    // Vérifie si au moins un utilisateur est trouvé
+    if ($stmt->rowCount() > 0) {
+        return true;
+    }
+
+    return false;
+}
+
 
     public function updateThisUser(User $user): bool
     {
@@ -111,7 +116,8 @@ class UserRepository
                 ADRESSE_USER = :ADRESSE_USER,
                 IS_ADMIN = :IS_ADMIN,
                 EMAIL_USER = :EMAIL_USER,
-                TELEPHONE_USER = :TELEPHONE_USER
+                TELEPHONE_USER = :TELEPHONE_USER,
+                PASSWORD_USER = :PASSWORD_USER
             WHERE ID_USER = :ID_USER";
 
         $statement = $this->DB->prepare($sql);
@@ -124,6 +130,7 @@ class UserRepository
             ':IS_ADMIN' => $user->getISADMIN(),
             ':EMAIL_USER' => $user->getEMAILUSER(),
             ':TELEPHONE_USER' => $user->getTELEPHONEUSER(),
+            ':PASSWORD_USER' => $user->getPASSWORDUSER(),
         ]);
 
         return $retour;

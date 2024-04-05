@@ -30,7 +30,7 @@ if (isset($_GET['erreur'])) {
 
     <?php include_once __DIR__ . "/../src/Includes/header.php"; ?>
     <div id="main">
-        <?php include_once __DIR__ . "/../src/Includes/navigation.php"; ?>
+        <?php include_once __DIR__ . "../../src/Includes/navigation.php"; ?>
         <?php include_once __DIR__ . "/../src/Includes/reservation.php" ?>
 
     </div>

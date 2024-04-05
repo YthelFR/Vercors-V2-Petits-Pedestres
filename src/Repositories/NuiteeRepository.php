@@ -13,7 +13,7 @@ class NuiteeRepository{
         $this->pdo = $database->getDB();
     }
 
-    public function getAllNuitees(\Nuitee $nuiteesArray){
+    public function getAllNuitees(Nuitee $nuiteesArray){
 
         $nuiteesArray = [];
 

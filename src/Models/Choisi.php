@@ -1,33 +1,36 @@
 <?php
-namespace src\Models;
+namespace Models;
 use src\Services\Hydratation;
-class Nuitee{
+class Choisi{
 
-    private $ID_NUITEE;
+    private $ID_PASS;
     private $ID_RESERVATION;
-    private $DATE_NUITEE;
+    private $DATE_PASS;
+
+  use Hydratation;
 
 
-    use Hydratation;
+
 
 
     /**
-     * Get the value of ID_NUITEE
+     * Get the value of ID_PASS
      */
-    public function getIDNUITEE()
+    public function getIDPASS()
     {
-        return $this->ID_NUITEE;
+        return $this->ID_PASS;
     }
 
     /**
-     * Set the value of ID_NUITEE
+     * Set the value of ID_PASS
      */
-    public function setIDNUITEE($ID_NUITEE): self
+    public function setIDPASS($ID_PASS): self
     {
-        $this->ID_NUITEE = $ID_NUITEE;
+        $this->ID_PASS = $ID_PASS;
 
         return $this;
     }
+
 
     /**
      * Get the value of ID_RESERVATION
@@ -48,20 +51,22 @@ class Nuitee{
     }
 
     /**
-     * Get the value of DATE_NUITEE
+     * Get the value of DATE_PASS
      */
-    public function getDATENUITEE()
+    public function getDATEPASS()
     {
-        return $this->DATE_NUITEE;
+        return $this->DATE_PASS;
     }
 
     /**
-     * Set the value of DATE_NUITEE
+     * Set the value of DATE_PASS
      */
-    public function setDATENUITEE($DATE_NUITEE): self
+    public function setDATEPASS($DATE_PASS): self
     {
-        $this->DATE_NUITEE = $DATE_NUITEE;
+        $this->DATE_PASS = $DATE_PASS;
 
         return $this;
     }
 }
+
+    
