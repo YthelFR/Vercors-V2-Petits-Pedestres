@@ -24,13 +24,13 @@ if (!empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['mail']) 
 
     if ($_POST['password'] === $_POST['password2']) {
         if (strlen($_POST['password']) >= 8) {
-            $password = hash('whirlpool', $password, PASSWORD_DEFAULT);
+            $PASSWORD_USER = password_hash($PASSWORD_USER, PASSWORD_DEFAULT);
         } else {
-            header('location: ../Includes/signIn.php?erreur=' . ERREUR_PASSWORD_LENGTH);
+            header('location: /../public/index.php?erreur=' . ERREUR_PASSWORD_LENGTH);
             exit;
         }
     } else {
-        header('location: ../Includes/signIn.php?erreur=' . PASSWORD_PAS_IDENTIQUE);
+        header('location: /../public/index.php?erreur=' . PASSWORD_PAS_IDENTIQUE);
         exit;
     }
 

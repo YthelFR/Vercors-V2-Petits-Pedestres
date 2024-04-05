@@ -73,11 +73,10 @@ class UserRepository
 
     public function registerUser(User $user)
     {
-        $password = $user->hashPassword($user->getPASSWORDUSER());
 
         try {
             $stmt = $this->pdo->prepare("INSERT INTO asy_user (NOM_USER, PRENOM_USER, ADRESSE_USER, IS_ADMIN, DATE_RGPD, PASSWORD_USER, EMAIL_USER, TELEPHONE_USER) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$user->getNOMUSER(), $user->getPRENOMUSER(), $user->getADRESSEUSER(), '0', $user->getDATERGPD(), $password, $user->getEMAILUSER(), $user->getTELEPHONEUSER()]);
+            $stmt->execute([$user->getNOMUSER(), $user->getPRENOMUSER(), $user->getADRESSEUSER(), '0', $user->getDATERGPD(), $user->getPASSWORDUSER(), $user->getEMAILUSER(), $user->getTELEPHONEUSER()]);
 
             return true;
         } catch (\PDOException $e) {
