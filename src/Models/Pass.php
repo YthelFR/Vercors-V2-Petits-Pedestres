@@ -1,5 +1,6 @@
 <?php
-namespace Models;
+namespace src\Models;
+use src\Services\Hydratation;
 
 class Pass{
 
@@ -8,11 +9,7 @@ class Pass{
     private $TARIF_PASS;
     private $REDUIT_PASS;
 
-    function __construct(array $datas){
-        foreach ($datas as $key => $value) {
-            $this->$key = $value;
-        }
-    }
+    use Hydratation;
 
 
 

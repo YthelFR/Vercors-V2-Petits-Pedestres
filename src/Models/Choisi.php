@@ -1,17 +1,13 @@
 <?php
 namespace Models;
-
+use src\Services\Hydratation;
 class Choisi{
 
     private $ID_PASS;
     private $ID_RESERVATION;
     private $DATE_PASS;
 
-    function __construct(array $datas){
-        foreach ($datas as $key => $value) {
-            $this->$key = $value;
-        }
-    }
+  use Hydratation;
 
 
 

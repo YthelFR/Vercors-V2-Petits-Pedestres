@@ -10,18 +10,31 @@ trait Hydratation
     $this->hydrate($data);
   }
 
-  private function hydrate(array $data): void
-  {
-    foreach ($data as $key => $value) {
-      $parts = explode('_', $key);
-      $setter = 'set';
-      foreach ($parts as $part) {
-        $setter .= ucfirst(strtolower($part));
-      }
+  // private function hydrate(array $data): void
+  // {
+  //   foreach ($data as $key => $value) {
+  //     $parts = explode('_', $key);
+  //     $setter = 'set';
+  //     foreach ($parts as $part) {
+  //       $setter .= ucfirst(strtolower($part));
+  //     }
 
-      $this->$setter($value);
+  //     $this->$setter($value);
+  //   }
+  // }
+
+  private function hydrate(array $data): void
+{
+    foreach ($data as $key => $value) {
+        $parts = explode('_', $key);
+        $setter = 'set';
+        foreach ($parts as $part) {
+            // Ajouter la partie à la chaîne setter
+            $setter .= $part;
+        }
+
     }
-  }
+}
 
   public function __set($name, $value)
   {

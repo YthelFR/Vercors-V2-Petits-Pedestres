@@ -11,7 +11,7 @@ class NuitRepository{
     public function __construct(Database $DB){
         $this->pdo = $DB->getDB();
     }
-public function addNuit(\Nuit $nuit){
+public function addNuit(Nuit $nuit){
       try {
             $stmt = $this->pdo->prepare("INSERT INTO asy_nuit VALUES(NULL, ?, ?)");
             $stmt->execute([$nuit->getTYPENUIT(), $nuit->getPRIXNUIT(), $_SESSION["id"]]);

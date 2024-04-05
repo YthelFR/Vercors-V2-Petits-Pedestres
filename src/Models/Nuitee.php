@@ -1,6 +1,6 @@
 <?php
-
-
+namespace src\Models;
+use src\Services\Hydratation;
 class Nuitee{
 
     private $ID_NUITEE;
@@ -8,11 +8,7 @@ class Nuitee{
     private $DATE_NUITEE;
 
 
-function __construct (array $datas){
-    foreach ($datas as $key => $value) {
-        $this->$key = $value;
-    }
-}
+    use Hydratation;
 
 
     /**

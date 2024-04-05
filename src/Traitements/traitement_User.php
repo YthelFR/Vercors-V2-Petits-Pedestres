@@ -11,7 +11,7 @@ require './../../erreurs.php';
 require_once './../autoload.php';
 
 
-if (!empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['mail']) && !empty($_POST['password']) && !empty($_POST['password2']) && !empty($_POST['adressePostale']) && !empty(($_POST['telephone'])) && isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['mail']) && isset($_POST['password']) && isset($_POST['password2']) && isset($_POST['adressePostale']) && isset(($_POST['telephone']))) {
+if (!empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['mail']) && !empty($_POST['password']) && !empty($_POST['password2']) && !empty($_POST['adressePostale']) && !empty(($_POST['telephone'])) && isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['mail']) && isset($_POST['password']) && isset($_POST['password2']) && isset($_POST['adressePostale']) && isset($_POST['telephone'])) {
     $NOM_USER = htmlentities($_POST['nom']);
     $PRENOM_USER = htmlentities($_POST['prenom']);
     $ADRESSE_USER = htmlentities($_POST['adressePostale']);
@@ -22,17 +22,17 @@ if (!empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['mail']) 
     $EMAIL_USER = htmlentities($_POST['mail']);
     $TELEPHONE_USER = htmlentities($_POST['telephone']);
 
-    if ($_POST['password'] === $_POST['password2']) {
-        if (strlen($_POST['password']) >= 8) {
-            $password = hash('whirlpool', $password, PASSWORD_DEFAULT);
-        } else {
-            header('location: /../public/index.php?erreur=' . ERREUR_PASSWORD_LENGTH);
-            exit;
-        }
+if ($_POST['password'] === $_POST['password2']) {
+    if (strlen($_POST['password']) >= 8) {
+        $PASSWORD_USER = password_hash($PASSWORD_USER, PASSWORD_DEFAULT);
     } else {
-        header('location: /../public/index.php?erreur=' . PASSWORD_PAS_IDENTIQUE);
+        header('location: /../public/index.php?erreur=' . ERREUR_PASSWORD_LENGTH);
         exit;
     }
+} else {
+    header('location: /../public/index.php?erreur=' . PASSWORD_PAS_IDENTIQUE);
+    exit;
+}
 
     if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
         $Mail = htmlentities($_POST['mail']);
@@ -44,6 +44,7 @@ if (!empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['mail']) 
     $repository = new UserRepository();
     $User = new User(['NOM_USER' => $NOM_USER, 'PRENOM_USER' => $PRENOM_USER, 'ADRESSE_USER' => $ADRESSE_USER, 'IS_ADMIN' => $IS_ADMIN, 'DATE_RGPD' => $DATE_RGPD, 'PASSWORD_USER' => $PASSWORD_USER, 'EMAIL_USER' => $EMAIL_USER, 'TELEPHONE_USER' => $TELEPHONE_USER]);
 
+    die;
     if (($repository->registerUser($User)) == true) {
         header('location: /../src/Includes/connexion.php');
         die;

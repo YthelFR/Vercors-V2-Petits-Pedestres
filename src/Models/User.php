@@ -1,6 +1,7 @@
 <?php
 
 namespace src\Models;
+use src\Services\Hydratation;
 
 class User
 {
@@ -13,33 +14,12 @@ class User
     private $PASSWORD_USER;
     private $EMAIL_USER;
     private $TELEPHONE_USER;
-    private $_logged;
+ 
 
-    /**
-     * [__construct description]
-     *
-     * @param   string  $Nom       [$Nom description]
-     * @param   string  $Prenom    [$Prenom description]
-     * @param   string  $password  [$password description]
-     * @param   string  $Mail      [$Mail description]
-     * @param   int                [ description]
-     * @param   string  $id        [$id description]
-     * @param   bool    $logged    [$logged description]
-     * @param   false              [ description]
-     *
-     * @return  [type]             [return description]
-     */
 
-    public function __construct(array $datas)
-    {
-        foreach ($datas as $key => $value) {
-            $this->$key = $value;
-        }
-    }
+    use Hydratation;
 
-    /**
-     * Get the value of ID_USER
-     */
+ 
     public function getIDUSER()
     {
         return $this->ID_USER;
@@ -109,25 +89,6 @@ class User
         return $this;
     }
 
-    #
-    public function getLogged(): bool
-    {
-        return $this->_logged;
-    }
-
-    public function setLogged(bool $logged)
-    {
-        $this->_logged = $logged;
-    }
-
-    public function logIn()
-    {
-        $this->setLogged(true);
-    }
-    public function logOut()
-    {
-        $this->setLogged(false);
-    }
 
     public function getISADMIN(): bool
     {
@@ -218,10 +179,5 @@ class User
         $this->TELEPHONE_USER = $TELEPHONE_USER;
 
         return $this;
-    }
-
-    public function hashPassword($password)
-    {
-        return password_hash($password, PASSWORD_BCRYPT);
     }
 }

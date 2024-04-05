@@ -14,7 +14,7 @@ CREATE TABLE asy_user(
         ADRESSE_USER   Varchar (255) NOT NULL ,
         IS_ADMIN       Bool NOT NULL ,
         DATE_RGPD      Datetime NOT NULL ,
-        PASSWORD_USER  Varchar (50) NOT NULL ,
+        PASSWORD_USER  Varchar (255) NOT NULL ,
         EMAIL_USER     Varchar (255) NOT NULL ,
         TELEPHONE_USER Varchar (15) NOT NULL
 	,CONSTRAINT asy_user_AK UNIQUE (EMAIL_USER,TELEPHONE_USER)

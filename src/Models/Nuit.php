@@ -1,4 +1,6 @@
 <?php
+namespace src\Models;
+use src\Services\Hydratation;
 
 class Nuit{
 
@@ -6,12 +8,8 @@ class Nuit{
     private $TYPE_NUIT;
     private $PRIX_NUIT;
 
+    use Hydratation;
 
-    function __construct(array $datas){ 
-        foreach ($datas as $key => $value) {
-            $this->$key = $value;
-        }
-}
 
     /**
      * Get the value of ID_NUIT

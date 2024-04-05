@@ -15,7 +15,7 @@ class PassRepository{
  $this->pdo = $database->getDB();
 }
 
-public function addPass(Pass $pass)
+public function addPass($pass)
 {
     try {
         $stmt = $this->pdo->prepare("INSERT INTO asy_pass VALUES(NULL, ?, ?, ?");
